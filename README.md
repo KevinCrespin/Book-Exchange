@@ -2,6 +2,7 @@
 
 A CS3337 @ Cal State LA project.</br>
 Book Exchange is a web application that alows students to trade and/or buy books from each other.</br>
+Built in Apache24, MySQL, PHP, BootStrap, HTML, and CSS
 
 ## Authors
 
