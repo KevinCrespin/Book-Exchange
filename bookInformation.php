@@ -13,45 +13,45 @@
 <body>
     <?php
 	include("mainMenu.php");
-    include("src/connectDatabase.php");
+    	include("src/connectDatabase.php");
     
 	$selectBooks = "SELECT * FROM books b JOIN users u ON b.seller_id = u.id WHERE b.isbn10 = " . $_GET['isbn10'] . ";";
-    $resultsBooks = mysqli_query($connect, $selectBooks);
+   	$resultsBooks = mysqli_query($connect, $selectBooks);
     
-    while($row = mysqli_fetch_assoc($resultsBooks)) {
-        print "<div class='container-fluid'>";
-        print "<h1 class='display-4 text-center m-4'>" . $row["title"] . "</h1>";
-        print "<p class='text-center mb-lg-5'> by ". $row['author'] . "</p>";
-        print "</div>";
-        print "<div class='container'>";
-        print "<div class='row'>";
-        print "<div class='col ml-5 pl-5'>";
-        print "<img src='" . $row["pic_path"] . "' style='margin-left: 50px; width: 347px; height: 446px;'/>";
-        print "</div>";
-        print "<div class='col m-0 pl-0'>";
-        print "<p>Price</p>";
-        print "<div style='font-size: 30px;'>$" . $row["price"] . "</div>";
-        print "<a href='src/bookCart.php?isbn10=" . ($row["isbn10"]) . "' style='font-size: 20px;'>Add to Cart</a>";
-        print "<table class='table table-bordered table-sm' style='margin-top: 10px;'>";
-        print "<thead class='thead-light'>";
-        print "<tr><td style='font-size: 18px;'>ISBN-10: </td><td style='font-size: 18px;'>" . $row["isbn10"] . "</td>";
-        print "<tr><td style='font-size: 18px;'>ISBN-13: </td><td style='font-size: 18px;'>978-" . $row["isbn10"] . "</td>";
-        print "<tr><td style='font-size: 18px;'>Publication Date: </td><td style='font-size: 18px;'>" . substr($row["post_time"], 0, 10) . "</td>";
-        print "<tr><td style='font-size: 18px;'>Sold by: </td><td style='font-size: 18px;'>" . $row["name"] . "</td>";
-        print "<tr><td style='font-size: 18px;'>Book Rating: </td><td style='font-size: 18px;'>" . $row["rating"] . " Stars</tr> ";
-        print "</thread>";
-        print "</table>";
-        print "<table class='table table-bordered table-sm' style='margin-top: 10px;'>";
-        print "<thead class='thead-light'>";
-        print "<tr><td style='background-color: #d9dddc;'><div style='font-size: 18px;'>Description</div></td></tr>";
-        print "<tr><td><div style='font-size: 18px; text-align: right;'>" . $row["description"] . "</div></td></tr>";
-        print "</thread>";
-        print "</table>";
-        print "</div>";
-        print "</div>";
-        print "</div>";
-        print "</div>";
-    }
+    	while($row = mysqli_fetch_assoc($resultsBooks)) {
+        	print "<div class='container-fluid'>";
+        	print "<h1 class='display-4 text-center m-4'>" . $row["title"] . "</h1>";
+        	print "<p class='text-center mb-lg-5'> by ". $row['author'] . "</p>";
+        	print "</div>";
+        	print "<div class='container'>";
+        	print "<div class='row'>";
+        	print "<div class='col ml-5 pl-5'>";
+        	print "<img src='" . $row["pic_path"] . "' style='margin-left: 50px; width: 347px; height: 446px;'/>";
+        	print "</div>";
+        	print "<div class='col m-0 pl-0'>";
+        	print "<p>Price</p>";
+        	print "<div style='font-size: 30px;'>$" . $row["price"] . "</div>";
+        	print "<a href='src/bookCart.php?isbn10=" . ($row["isbn10"]) . "' style='font-size: 20px;'>Add to Cart</a>";
+        	print "<table class='table table-bordered table-sm' style='margin-top: 10px;'>";
+        	print "<thead class='thead-light'>";
+        	print "<tr><td style='font-size: 18px;'>ISBN-10: </td><td style='font-size: 18px;'>" . $row["isbn10"] . "</td>";
+        	print "<tr><td style='font-size: 18px;'>ISBN-13: </td><td style='font-size: 18px;'>978-" . $row["isbn10"] . "</td>";
+        	print "<tr><td style='font-size: 18px;'>Publication Date: </td><td style='font-size: 18px;'>" . substr($row["post_time"], 0, 10) . "</td>";
+        	print "<tr><td style='font-size: 18px;'>Sold by: </td><td style='font-size: 18px;'>" . $row["name"] . "</td>";
+        	print "<tr><td style='font-size: 18px;'>Book Rating: </td><td style='font-size: 18px;'>" . $row["rating"] . " Stars</tr> ";
+        	print "</thread>";
+        	print "</table>";
+        	print "<table class='table table-bordered table-sm' style='margin-top: 10px;'>";
+        	print "<thead class='thead-light'>";
+        	print "<tr><td style='background-color: #d9dddc;'><div style='font-size: 18px;'>Description</div></td></tr>";
+        	print "<tr><td><div style='font-size: 18px; text-align: right;'>" . $row["description"] . "</div></td></tr>";
+        	print "</thread>";
+        	print "</table>";
+        	print "</div>";
+        	print "</div>";
+        	print "</div>";
+        	print "</div>";
+    	}
 
 	$selectComments = "SELECT * FROM comments c JOIN books b ON c.parent_isbn10 = b.isbn10 WHERE b.isbn10 = " . $_GET["isbn10"];
 	$resultsComments = mysqli_query($connect, $selectComments);
