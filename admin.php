@@ -40,48 +40,48 @@
                         <tr>
                             	<th>Name</th>
                             	<th>Email</th>
-								<th>Delete</th>
-								<th>Increase Balance</th>
-								<th>Administrator Permissions</th>
-								<th>Status</th>
-								<th>Balance</th>
+				<th>Delete</th>
+				<th>Increase Balance</th>
+				<th>Administrator Permissions</th>
+				<th>Status</th>
+				<th>Balance</th>
                         </tr>
                     </thead>
                     <?php
-					while($row = mysqli_fetch_assoc($results)) {
-						print "<tr>";
-						print "<td>" . ($row["name"]) . "</td>";
-						print "<td>" . ($row["email"]). "</td>";
-						print "<td><a href='src/userDelete.php?email=" . $row["email"] . "'>DELETE</a></td>";
-						print "<td><a href='src/userIncreaseBalance.php?email=" . $row["email"] . "'>Increase Balance</a></td>";
-						if($row["is_admin"] == true ) {
-							print "<td><a href='src/adminPermissions.php?email=" . $row["email"] . "&name=" . $row["name"] . "'>Revoke Administrator</a>";
-						} else {
-							print "<td><a href='src/adminPermissions.php?email=" . $row["email"] . "&name=" . $row["name"] . "'>Make Administrator</a>";
-						}
-						print "<td><a href='src/userHoldStatus.php?email=" . $row["email"] ."&holdstatus=" . $row["hold_status"] . "'> ". $row["hold_status"] . "</a></td>";
-						if($row["balance"]>0 && $row["hold_status"]=='Active'){
-							$status = "<div><font color=green>".$row["balance"].", Good Standing</font></div>";
-						} elseif($row["balance"] < 0 && $row["hold_status"]=='Active'){
-							$status = "<div><font color=blue><em>".$row["balance"].", Required money</em></font></div>";
-						} else{
-							$status = "<div><font color=red><strong>Hold</strong></font></div>";
-						}
-						print "<td>$status</td>";
-						print "</tr>";
-					}
-					?>
+			while($row = mysqli_fetch_assoc($results)) {
+				print "<tr>";
+				print "<td>" . ($row["name"]) . "</td>";
+				print "<td>" . ($row["email"]). "</td>";
+				print "<td><a href='src/userDelete.php?email=" . $row["email"] . "'>DELETE</a></td>";
+				print "<td><a href='src/userIncreaseBalance.php?email=" . $row["email"] . "'>Increase Balance</a></td>";
+				if($row["is_admin"] == true ) {
+					print "<td><a href='src/adminPermissions.php?email=" . $row["email"] . "&name=" . $row["name"] . "'>Revoke Administrator</a>";
+				} else {
+					print "<td><a href='src/adminPermissions.php?email=" . $row["email"] . "&name=" . $row["name"] . "'>Make Administrator</a>";
+				}
+				print "<td><a href='src/userHoldStatus.php?email=" . $row["email"] ."&holdstatus=" . $row["hold_status"] . "'> ". $row["hold_status"] . "</a></td>";
+				if($row["balance"]>0 && $row["hold_status"]=='Active'){
+					$status = "<div><font color=green>".$row["balance"].", Good Standing</font></div>";
+				} elseif($row["balance"] < 0 && $row["hold_status"]=='Active'){
+					$status = "<div><font color=blue><em>".$row["balance"].", Required money</em></font></div>";
+				} else{
+					$status = "<div><font color=red><strong>Hold</strong></font></div>";
+				}
+				print "<td>$status</td>";
+				print "</tr>";
+			}
+		  ?>
                 </table>
             </div>
         </div>
         <div class="row">
-			<div class="col">
-            	<a href="userEnroll.php" id="links" align="center">GO TO ENROLLMENT PAGE</a>
-			</div>
-			<div class="col" align="right">
-				<a href="main.php" id="links" align="center">MAIN MENU</a>
-            	<a href="src/logout.php" id="links">LOGOUT</a>
-			</div>
+		<div class="col">
+            		<a href="userEnroll.php" id="links" align="center">GO TO ENROLLMENT PAGE</a>
+		</div>
+		<div class="col" align="right">
+			<a href="main.php" id="links" align="center">MAIN MENU</a>
+            		<a href="src/logout.php" id="links">LOGOUT</a>
+		</div>
         </div>
     </div>
 </body>
