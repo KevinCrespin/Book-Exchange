@@ -14,7 +14,7 @@
 
 <body>
 <?php
-	include("MainMenu.php");
+	include("mainMenu.php");
 ?>
 <h2 align="center" style="margin-top:20px; margin-bottom:20px;">SELL</h2>
 <div class="container">
@@ -22,7 +22,7 @@
     	<div class="col col-lg-2">
     	</div>
     	<div class="col-md-auto">
-			<form action="sellingInsert.php" enctype="multipart/form-data" method ="post">
+			<form action="src/sellingInsert.php" enctype="multipart/form-data" method ="post">
 			<table class="table table-bordered table-sm">
 				<tr>
 					<th>SELLING AS</th>

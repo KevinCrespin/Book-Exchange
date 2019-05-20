@@ -1,28 +1,9 @@
-@charset "utf-8";
+@charset "UTF-8";
+
 *{
     font-family: 'Futura', Arial, Helvetica, sans-serif;
     margin: 0;
 }
-
-/*.ul_css{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}*/
-/*.li_css_a {
-	display: block;
-	color: #FF0;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}*/
-/*.li_css
-{
-	float: left;
-	border-right: 1px solid black;
-}*/
 
 a {
     text-decoration: none;
@@ -64,10 +45,14 @@ a {
 .nav a:hover{
     color: #FFCE00;
 }
-
 .col {
     border-right: 2px solid white;
 }
+
+.col#last {
+    border-right: 0px white;
+}
+
 
 .nav a:hover{
     color: white;
@@ -105,6 +90,6 @@ a {
 }
 
 #white-box a:hover{
-    color: #4a4f55;
+    color: yellow;
     text-decoration: none;
 }

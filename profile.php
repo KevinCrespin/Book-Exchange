@@ -29,8 +29,8 @@
 
 <body>
 <?php
-	include("MainMenu.php");
-	include("Connect_Database.php");
+	include("mainMenu.php");
+	include("src/connectDatabase.php");
 ?>
 <h2 align="center" style="margin-top:20px; margin-bottom:20px; text-transform: uppercase;">WELCOME <?php print $_SESSION['name'] ?>!</h2>
 <div class="col-3">
@@ -40,18 +40,16 @@
 	$lowBalance = null;
 	$selectBooksForCartArray = null;
 
-	//selecting the user and taking and storing the balance in a variable
-	$selectProfile = "SELECT * FROM users where " .	"email='" . $_SESSION["email"] . "'";
+	$selectProfile = "SELECT * FROM users WHERE " .	"email='" . $_SESSION["email"] . "'";
 	$account = mysqli_query($connect, $selectProfile);
 	$data = mysqli_fetch_assoc($account);
 	$profileBalance = $data["balance"];
 
-			//
-	$selectBooksForCartQuery = "SELECT * FROM books b JOIN cart c where b.isbn10 = c.isbn10;";
+	$selectBooksForCartQuery = "SELECT * FROM books b JOIN cart c WHERE b.isbn10 = c.isbn10;";
 	$selectBooksForCartObject = mysqli_query($connect, $selectBooksForCartQuery);
 
 	if (isset($_GET["isbn10"])) {
-		$priceForBalanceCheckQuery = "SELECT price from books where isbn10 = '" . $_GET["isbn10"] . "';";
+		$priceForBalanceCheckQuery = "SELECT price FROM books WHERE isbn10 = '" . $_GET["isbn10"] . "';";
 		$priceForBalanceCheckObject = mysqli_query($connect, $priceForBalanceCheckQuery);
 		$priceForBalanceCheckArray = mysqli_fetch_assoc($priceForBalanceCheckObject);
 		if (!($selectBooksForCartObject->num_rows == 0)) {
@@ -60,14 +58,14 @@
 				}
 		}
 		if (($profileBalance - $totalBookPriceInCart) >= $priceForBalanceCheckArray["price"]) {
-			$bookInsertToCartQuery = "insert into cart values('" . $_GET["isbn10"] . "');";
+			$bookInsertToCartQuery = "INSERT INTO cart VALUES('" . $_GET["isbn10"] . "');";
 			$bookInsertToCartObject = mysqli_query($connect, $bookInsertToCartQuery);
 			$totalBookPriceInCart = $totalBookPriceInCart + $priceForBalanceCheckArray["price"];
 		} else {
 			$lowBalance = "Low Balance to purchase";
 		}
 	} else{
-		$selectBooksForCartQuery = "SELECT * FROM books b JOIN cart c where b.isbn10 = c.isbn10;";
+		$selectBooksForCartQuery = "SELECT * FROM books b JOIN cart c WHERE b.isbn10 = c.isbn10;";
 		$selectBooksForCartObject = mysqli_query($connect, $selectBooksForCartQuery);
 		while($selectBooksForCartArray = mysqli_fetch_assoc($selectBooksForCartObject)) {
 			$totalBookPriceInCart = $totalBookPriceInCart + $selectBooksForCartArray["price"];
@@ -76,7 +74,7 @@
 ?>
 </div>   		
 <?php
-	$selectBooks = "SELECT * FROM books b JOIN users u ON b.seller_id = u.id where " . "email='" . $_SESSION["email"] . "'";
+	$selectBooks = "SELECT * FROM books b JOIN users u ON b.seller_id = u.id WHERE " . "email='" . $_SESSION["email"] . "'";
 	$results = mysqli_query($connect, $selectBooks);
 ?>
 <div class="container">
@@ -88,7 +86,7 @@
 					<tr>
 						<th>BALANCE</th>
 					</tr>
-				</thead>
+				
 					<tr>
 						<td>
 						<?php
@@ -100,6 +98,7 @@
 						?>
 						</td>
 					</tr>
+				</thead>
 			</table>
 		</div>
 		<div class="col-4">
@@ -111,7 +110,7 @@
 						print "<td colspan=2  style='height: 70px;'>" . ($row["title"]) . "</td>";
 						print "</tr>";
 						print "<tr>";
-						print "<td rowspan=3 align='center'><a href='BookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
+						print "<td rowspan=3 align='center'><a href='bookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
 						print "<td id='center'> $ " . ($row["price"]) . "</td>";
 						print "<tr>";
 						print "<td id='center'><a href='#'>Delete Item</a></td>";
@@ -129,17 +128,16 @@
 					print("<h3>EMPTY CART</h3>");
 				} else {
 					print("<h3>ITEMS IN YOUR CART<br></h3>");
-					
 					while ($row = mysqli_fetch_assoc($results)) {
 						print("<table width='255'>");
 						print "<tr>";
 						print "<td colspan=2 style='height: 70px;'>" . ($row["title"]) . "</td>";
 						print "</tr>";
 						print "<tr>";
-						print "<td rowspan=3 align='center'><a href='BookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
+						print "<td rowspan=3 align='center'><a href=bookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
 						print "<td id='center'> $ " . ($row["price"]) . "</td>";
 						print "<tr>";
-						print "<td id='center'><a href='deleteBook.php?isbn10=" . ($row["isbn10"]) . "'>Remove</a></td>";
+						print "<td id='center'><a href='src/deleteBook.php?isbn10=" . ($row["isbn10"]) . "'>Remove</a></td>";
 						print "</tr>";
 						print("</table>");
 						$bookPrice = number_format($bookPrice + $row["price"], 2);
@@ -147,7 +145,7 @@
 					print("<table width='255'>");
 					print("<tr>");
 					print("<td style='text-align: center'>Total: $$bookPrice</td>");
-					print("<td style='text-align: right'><a href=bookBuy.php><input class='btn btn-primary' style='width: 100px; height: 40px;' type='button' value='Buy'></a></td>");
+					print("<td style='text-align: right'><a href='src/bookBuy.php'><input class='btn btn-primary' style='width: 100px; height: 40px;' type='button' value='Buy'></a></td>");
 					print("</tr>");
 					print("</table>");
 				}

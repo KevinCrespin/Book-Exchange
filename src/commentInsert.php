@@ -1,25 +1,12 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-
-<body>
 <?php
-	include("Connect_Database.php");
-?>
-<?php
-  $postInsert = "insert into comments(commenter_id, commenter_name, comment, parent_isbn10, comment_rating) values('" .
-    $_POST["id"] .
-    "', '" .
-    $_POST["name"] .
-    "', '" .
-    $_POST["comment"] .
-    "', '" .
-     $_POST["isbn10"] .
-    "', '" .
-    $_POST["rating"] .
-    "')";
+  include("connectDatabase.php");
+  
+  $postInsert = "INSERT INTO comments(commenter_id, commenter_name, comment, parent_isbn10, comment_rating) VALUES('" .
+    $_POST["id"] . "', '" .
+    $_POST["name"] . "', '" .
+    $_POST["comment"] . "', '" .
+    $_POST["isbn10"] . "', '" .
+    $_POST["rating"] . "')";
     
   mysqli_query($connect, $postInsert);
 
@@ -36,7 +23,5 @@
   $newRating = number_format(($ratingsSum / $ratings), 1, '.', '');
   $updateRating = "UPDATE books SET rating=" . $newRating . " WHERE isbn10=" . $_POST["isbn10"];
   mysqli_query($connect, $updateRating);
-  header("Location: BookInformation.php?isbn10=" . $_POST["isbn10"]);
+  header("Location: /BookExchange/bookInformation.php?isbn10=" . $_POST["isbn10"]);
 ?>
-</body>
-</html>

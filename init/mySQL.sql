@@ -1,3 +1,7 @@
+-- Select database
+
+use cs3337;
+
 --  Drop table if exists
 
 drop table if exists users;

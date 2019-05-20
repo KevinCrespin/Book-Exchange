@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Forum</title>
@@ -15,13 +14,10 @@
 
 <body>
 <?php
-	include("MainMenu.php");
-?>
-<?php
-	include("Connect_Database.php");
-?>
-<?php
-	$selectForums = "select * from forum;";
+	include("mainMenu.php");
+	include("src/connectDatabase.php");
+
+	$selectForums = "SELECT * FROM forum;";
 	$results = mysqli_query($connect, $selectForums);
 ?>
 <nav>
@@ -52,7 +48,7 @@
              </table>
         </div>
         <div class="col-4">
-            <form action="forumsinsert.php" method="post">
+            <form action="src/forumsInsert.php" method="post">
                 <table align="center" style="margin-left: 50px;">
                     <tr>
                         <td>Posting as: &nbsp;&nbsp;&nbsp; <?php print $_SESSION['name']?></td>

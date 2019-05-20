@@ -1,18 +1,13 @@
 <!doctype html>
 <html>
-
 <head>
-    <title>Shopping</title>
+<title>Shopping</title>
 </head>
-
 <body>
 <?php
-	include("MainMenu.php");
-?>
-<?php
-	include("Connect_Database.php");
-?>
-<?php
+	include("mainMenu.php");
+	include("src/connectDatabase.php");
+
 	$selectBooks = "SELECT * FROM books b JOIN users u ON b.seller_id = u.id;";
 	$results = mysqli_query($connect, $selectBooks);
 ?>
@@ -32,11 +27,11 @@
                     while($row = mysqli_fetch_assoc($results)) {
                         print "<tr>";
                         print "<td>" . ($row["name"]) . "</td>";
-                        print "<td><a href='BookInformation.php?isbn10=" . ($row["isbn10"]) . "'>";
+                        print "<td><a href='bookInformation.php?isbn10=" . ($row["isbn10"]) . "'>";
                         print ($row["title"]) . "</a></td>";
                         print "<td style='text-align: center;'>" . ($row["price"]) . "</td>";
                         print "<td style='text-align: center;'>" . substr($row["post_time"], 0, 10) . "</td>";
-                        print "<td width = 150><a href='BookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
+                        print "<td width = 150><a href='bookInformation.php?isbn10=" . ($row["isbn10"]) . "'><img src='" . $row["pic_path"] . "' height = 190 width = 150></a></td>";
                         print "</tr>";
                     }
                 ?>
