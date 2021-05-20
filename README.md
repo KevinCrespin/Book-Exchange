@@ -2,6 +2,12 @@
 
 Book Exchange is a web application that allows students to trade and/or buy books from each other.</br>
 
+## Images
+
+![1](images/1.png)
+![2](images/2.png)
+![3](images/3.png)
+
 ## Technologies Used
 
 * PHP
